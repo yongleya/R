@@ -343,7 +343,67 @@ strsplit(c(path,path),"/")# 有fixed参数用来选择是否使用正则
 x <- 1:13
 suit <- c("spades","clubs","hearts","diamonds")
 outer(suit,x,FUN = paste,sep='-')  #  生成一个笛卡尔集合 sep指定连接集合  
- 
+
+
+# 时间序列分析  timeseries
+# 对当前数据的描述和预测
+sunspots   # 1749到1983年每月太阳黑子数
+presidents  # 1945到1974年美国总统支持率
+class(presidents)
+presidents$Qtr1   # 不是数据框不能用$
+airmiles
+Sys.Date()
+class(Sys.Date())
+Sys.time()
+a <- "2017-01-01"
+b <- as.Date(a, format = "%Y-%m-%d")
+class(a)
+class(b)
+?strftime
+dates <- c("2021/1/1","2021/1/2","2021/1/3")
+times <- c("21:00:00","22:20:30","23:10:00")
+datetimes <- outer(dates,times,paste,sep=' ')
+datetimes
+seq(as.Date("2017-01-07"),as.Date("2017-03-01"),by=1)
+?ts
+round(runif(10,min = 1,max = 24))   #runif生成指定个数和范围内的随机数
+
+ts(round(runif(20,min=60,max=80)),start = c(2021,1),end = c(2024,7),frequency = 1) # 年
+ts(round(runif(20,min=60,max=80)),start = c(2021,1),end = c(2024,7),frequency = 4) # 季度
+ts(round(runif(20,min=60,max=80)),start = c(2021,1),end = c(2024,7),frequency = 12) # 月份
+
+
+# 常见错误
+# 定义向量没有c
+x <- c(1,2,3)
+class(c(1:12))
+class(c("1","2"))
+# 定义符号打成< -
+# 括号错误
+# 字符串一定要加引号
+# 安装R包的时候要加引号
+# 集合点错
+# 对数据框或者矩阵进行行或者列索引时要加逗号,
+# 逻辑操作符 == 写成 =
+# 路径问题    windows系统中路径用反斜线\ 但R将反斜线\当做转义  可以使用两个反斜线\\  就与linux系统一样了
+# R扩展包问题  有时候R扩展包没有安装或者载入
+# 运算符优先级问题
+# 优先级 符号 含义
+# 1	    ()	括号
+# 2	    ^	乘方运算
+# 3	    %%	整除求余
+#  	    %/%	整除
+# 4	    *	乘法
+#  	    /	除法
+# 5	    +	加法
+#  	    -	减法
+# R语言和linux一样严格区分大小写
+
+
+# R获取数据
+
+
+
 
 
 
