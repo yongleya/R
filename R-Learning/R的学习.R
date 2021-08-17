@@ -144,7 +144,7 @@ x + y
 y - x
 x * y
 y / x
-x**y
+x
 y %% x  # 取余
 y %/% x   # 取模
 y == x
@@ -223,7 +223,7 @@ state.x77["Alabama",]
 # 矩阵运算
 m * 2
 m + m
-m**2
+m ** 2
 m / 2
 m - 1
 m + 1
@@ -616,9 +616,41 @@ as.vector(data)
 # end -------------------- 数据格式转换 ------------------------ end
 
 # start -------------------- 筛选子集 ------------------------ start
+setwd("R-Learning")
 who <- read.csv("Learning-Resources/WHO.csv")
+class(who)
+who1 <- who[1:50,1:10]
+View(who1)  # 以表格形式查看
+who2 <- who[c(1,3,5,8),c(2,14,16,18)]
+View(who2)
+who$Continent
+View(who[which(who$Continent==7),])
+View(who[which(who$Country=="China"),])
+View(who[which(who$CountryID<20&who$CountryID>2),1:2])  # which 函数筛选子集， 注意加逗号
+?subset
+who4 <- subset(who,who$CountryID>=50 & who$CountryID<=100)  # subset 条件筛选子集
+View(who4)
+?sample  # 随机抽样
+x <- 1:100
+sample(x,30)  # 无放回抽样
+sample(x, 60, replace = T)  # 有放回抽样
+View(who[sample(who$CountryID,30,replace = F),])  # 从who中无放回随机抽30个样本
+mtcars[c(-1:-6),]  # 筛选除指定行数据
+mtcars$mpg <- NULL  # 删除列
+mtcars
+# start **********数据框合并********** start
+data.frame(USArrests,state.division)  # 用data.frame合并
+cbind(USArrests,state.division)  # 合并列
+data1 <- head(USArrests,30)  # 取头20行数据
+data2 <- tail(USArrests,20) # 取尾部20行数据
+rbind(data1,data2)  # 行合并  必须保证列名一致
+data3 <- tail(USArrests,30)  # data1与data3中有十个重复项
+data4 <- rbind(data1,data3)  # rbind 不会去除重复项
+duplicated(data4)  # 显示重复项行
+data4[!duplicated(data4),]  # 去除重复项行
+unique(data4)  # 直接去除重复行
 
 
-
+# end **********数据框合并********** end
 # end -------------------- 筛选子集 ------------------------ end
 
