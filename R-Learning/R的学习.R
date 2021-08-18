@@ -485,9 +485,20 @@ fun3 <- function(x, y = 2, z = 3) {
   message(x)
 }
 
+fun4 <- function (x,...){
+  # print(class(...))
+  fsum <- x
+  y <- c(...)
+  p <- "不定参数函数包含"
+  for (i in y){
+    p <- paste(p,"%s\n")
+  }
+  cat(sprintf(p,...))
+}  # 不定参数函数
 fun2(2, 3, 4)
 fun3(2)
 format("ssss%s", "3")
+fun4(1,2,2,3,4)
 # **********函数********** end
 
 # -------------------- 判断  循环  函数 ------------------------ end
@@ -654,3 +665,63 @@ unique(data4)  # 直接去除重复行
 # end **********数据框合并********** end
 # end -------------------- 筛选子集 ------------------------ end
 
+# start -------------------- 数据转换3 ------------------------ start
+t(mtcars)   # 转置
+rev(c(1,2,3,4))  # 翻转向量
+women <- women
+women[,rev(names(women))]  # 翻转列
+women[rev(rownames(women)),] # 翻转行
+transform(women,height=height*2.54)  # 修改数据框列的值
+# start **********排序********** start
+sort(rivers,decreasing = T)  # 降序排列rivers
+sort(state.name)
+mtcars[sort(rownames(mtcars)),]  # 根据索引降序排列数据框
+mtcars[which(mtcars$mpg==as.vector(sort(mtcars$mpg))),]
+?order
+order(mtcars$mpg)  # 返回排序后的索引
+mtcars[order(mtcars$mpg),]    # 按照mpg列正序排序
+mtcars[order(-mtcars$mpg),]  # 按照mpg降序排列
+mtcars[order(mtcars$mpg,decreasing = T),]  # 按照mpg降序排列
+mtcars[rev(order(mtcars$mpg)),]   # 按照mpg降序排列
+mtcars[order(mtcars$mpg,mtcars$disp),]   # 按照mpg,disp降序排列
+# end **********排序********** end
+
+# start **********数据框的计算********** start
+WorldPhones
+class(WorldPhones)
+wp <- data.frame(WorldPhones)
+rowSums(wp)  # 横向相加
+colMeans(wp)
+sdf <- cbind(wp,sum=rowSums(wp))
+msdf <- rbind(sdf,mean=colMeans(sdf))
+?apply  # 对向量和数据框计算
+apply(sdf,MARGIN = 1,FUN = sum)  # 计算行求和
+apply(sdf,MARGIN = 2,FUN = mean)  # 求列平均值
+?lapply # 对列表计算
+state.center  # a list
+lapply(state.center, FUN=length)  # 返回列表值
+sapply(state.center,FUN=length)  # 返回向量值
+?tapply  # 对因子类型数据计算
+state.name
+state.division
+tapply(state.name,state.division,length)
+# end **********数据框的计算********** end
+
+# start **********数据中心化和标准化********** start
+?scale
+heatmap(scale(state.x77,center = T,scale = T))
+colMeans(state.x77)
+# end **********数据中心化和标准化********** end
+
+# end -------------------- 数据转换3 ------------------------ end
+
+# start -------------------- 数据格式转换 ------------------------ start
+help(package = "reshape2")
+airquality
+names(airquality) <- tolower(names(airquality))
+head(airquality,20)
+?melt
+melt(airquality)  # # 融合数据
+
+
+# end -------------------- 数据格式转换 ------------------------ end
