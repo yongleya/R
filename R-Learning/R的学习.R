@@ -3,7 +3,7 @@ ls.str()  # 查看当前所有变量内容
 a <- 1
 rm(a)  # 清除变量a
 rm("a")  # 清除变量a
-rm(list=ls())  # 清除所有变量
+rm(list = ls())  # 清除所有变量
 
 # R包的安装
 # install.packages("包名称")
@@ -223,7 +223,7 @@ state.x77["Alabama",]
 # 矩阵运算
 m * 2
 m + m
-m ** 2
+m**2
 m / 2
 m - 1
 m + 1
@@ -485,20 +485,22 @@ fun3 <- function(x, y = 2, z = 3) {
   message(x)
 }
 
-fun4 <- function (x,...){
+fun4 <- function(x, ...) {
   # print(class(...))
   fsum <- x
   y <- c(...)
   p <- "不定参数函数包含"
-  for (i in y){
-    p <- paste(p,"%s\n")
+  for (i in y) {
+    p <- paste(p, "%s\n")
   }
-  cat(sprintf(p,...))
-}  # 不定参数函数
+  cat(sprintf(p, ...))
+}
+
+# 不定参数函数
 fun2(2, 3, 4)
 fun3(2)
 format("ssss%s", "3")
-fun4(1,2,2,3,4)
+fun4(1, 2, 2, 3, 4)
 # **********函数********** end
 
 # -------------------- 判断  循环  函数 ------------------------ end
@@ -552,12 +554,12 @@ class(df)
 head(df)
 head(df, 10)
 df2 <- read.csv(file = "Learning-Resources/input.csv" # 文件名
-                , sep = ","  # 间隔符
-                , header = TURE  # 是否将第一行作为列名 而不是当做值处理
-                , skip = 0  # 读取数据时跳过部分内容
-                , nrows = 20 # 读取多少行数据
-                , na.strings = " " # 告诉系统将那部分视为缺失值
-                , stringsAsFactors = FALSE # 读入字符串是否转换为因子
+  , sep = ","  # 间隔符
+  , header = TURE  # 是否将第一行作为列名 而不是当做值处理
+  , skip = 0  # 读取数据时跳过部分内容
+  , nrows = 20 # 读取多少行数据
+  , na.strings = " " # 告诉系统将那部分视为缺失值
+  , stringsAsFactors = FALSE # 读入字符串是否转换为因子
 )
 df2
 # read.csv  默认 , 为分隔符
@@ -571,7 +573,7 @@ detach("package:XML")
 help(package = "foreign")
 RSiteSearch("MATLAB")
 # R可以读取系统剪切板的内容
-x <- read.table("clipboard",header = T,sep = "\t")
+x <- read.table("clipboard", header = T, sep = "\t")
 readClipboard() # 读取剪切板信息
 x
 # R可以在不解压缩的情况下直接读取gz格式文件
@@ -581,18 +583,18 @@ read.table(gzfile("Learning-Resources/input.txt.gz"))
 
 
 # -------------------- 写入文件 ------------------------ start
-x <- dbReadTable(mysqlConnector,"table1")
+x <- dbReadTable(mysqlConnector, "table1")
 write.table(data
-            ,"Learning-Resources/data1.xlsx" # 文件路径、文件名
-            , sep = "\t"  # 分隔符
-            , na = ""
-            , row.names = T # 去掉行号保存
-            , col.names = T # 去掉列名保存
-            , quote = F # 不加双引号
-            , append = F # 为TURE时向文件结尾追加  为FALSE时覆盖源文件
-            , fileEncoding = "utf-8"  # 文件编码
+  , "Learning-Resources/data1.xlsx" # 文件路径、文件名
+  , sep = "\t"  # 分隔符
+  , na = ""
+  , row.names = T # 去掉行号保存
+  , col.names = T # 去掉列名保存
+  , quote = F # 不加双引号
+  , append = F # 为TURE时向文件结尾追加  为FALSE时覆盖源文件
+  , fileEncoding = "utf-8"  # 文件编码
 )
-read.table("Learning-Resources/data1.xlsx",sep = "\t",header = T)
+read.table("Learning-Resources/data1.xlsx", sep = "\t", header = T)
 
 # -------------------- 写入文件 ------------------------ end
 
@@ -600,10 +602,10 @@ read.table("Learning-Resources/data1.xlsx",sep = "\t",header = T)
 # -------------------- 读写R格式文件 ------------------------ start
 
 head(iris)
-saveRDS(iris,"Learning-Resources/file.RDS")
+saveRDS(iris, "Learning-Resources/file.RDS")
 readRDS("Learning-Resources/file.RDS")
 # RData可以存储更多的R对象
-save(iris,iris3,file = "C:/Users/Administrator/Desktop/l1.RData")
+save(iris, iris3, file = "C:/Users/Administrator/Desktop/l1.RData")
 
 # -------------------- 读写R格式文件 ------------------------ end
 
@@ -613,12 +615,12 @@ methods(as)  # 查看is 和 as 的全部内容
 is.data.frame(state.x77)
 df <- as.data.frame(state.x77)
 class(df)
-df2 <- data.frame(state.x77,state.region)
+df2 <- data.frame(state.x77, state.region)
 class(df2)
 df3 <- as.matrix(df2)
 class(df3)
 df3  # 如果将含有字符型的data.frame转换为矩阵  会将数值型转换为字符型
-as.integer(as.vector(as.factor(c(1,2,3,4))))
+as.integer(as.vector(as.factor(c(1, 2, 3, 4))))
 
 data
 unname(data)
@@ -630,33 +632,33 @@ as.vector(data)
 setwd("R-Learning")
 who <- read.csv("Learning-Resources/WHO.csv")
 class(who)
-who1 <- who[1:50,1:10]
+who1 <- who[1:50, 1:10]
 View(who1)  # 以表格形式查看
-who2 <- who[c(1,3,5,8),c(2,14,16,18)]
+who2 <- who[c(1, 3, 5, 8), c(2, 14, 16, 18)]
 View(who2)
 who$Continent
-View(who[which(who$Continent==7),])
-View(who[which(who$Country=="China"),])
-View(who[which(who$CountryID<20&who$CountryID>2),1:2])  # which 函数筛选子集， 注意加逗号
+View(who[which(who$Continent == 7),])
+View(who[which(who$Country == "China"),])
+View(who[which(who$CountryID < 20 & who$CountryID > 2), 1:2])  # which 函数筛选子集， 注意加逗号
 ?subset
-who4 <- subset(who,who$CountryID>=50 & who$CountryID<=100)  # subset 条件筛选子集
+who4 <- subset(who, who$CountryID >= 50 & who$CountryID <= 100)  # subset 条件筛选子集
 View(who4)
 ?sample  # 随机抽样
 x <- 1:100
-sample(x,30)  # 无放回抽样
+sample(x, 30)  # 无放回抽样
 sample(x, 60, replace = T)  # 有放回抽样
-View(who[sample(who$CountryID,30,replace = F),])  # 从who中无放回随机抽30个样本
+View(who[sample(who$CountryID, 30, replace = F),])  # 从who中无放回随机抽30个样本
 mtcars[c(-1:-6),]  # 筛选除指定行数据
 mtcars$mpg <- NULL  # 删除列
 mtcars
 # start **********数据框合并********** start
-data.frame(USArrests,state.division)  # 用data.frame合并
-cbind(USArrests,state.division)  # 合并列
-data1 <- head(USArrests,30)  # 取头20行数据
-data2 <- tail(USArrests,20) # 取尾部20行数据
-rbind(data1,data2)  # 行合并  必须保证列名一致
-data3 <- tail(USArrests,30)  # data1与data3中有十个重复项
-data4 <- rbind(data1,data3)  # rbind 不会去除重复项
+data.frame(USArrests, state.division)  # 用data.frame合并
+cbind(USArrests, state.division)  # 合并列
+data1 <- head(USArrests, 30)  # 取头20行数据
+data2 <- tail(USArrests, 20) # 取尾部20行数据
+rbind(data1, data2)  # 行合并  必须保证列名一致
+data3 <- tail(USArrests, 30)  # data1与data3中有十个重复项
+data4 <- rbind(data1, data3)  # rbind 不会去除重复项
 duplicated(data4)  # 显示重复项行
 data4[!duplicated(data4),]  # 去除重复项行
 unique(data4)  # 直接去除重复行
@@ -667,23 +669,23 @@ unique(data4)  # 直接去除重复行
 
 # start -------------------- 数据转换3 ------------------------ start
 t(mtcars)   # 转置
-rev(c(1,2,3,4))  # 翻转向量
+rev(c(1, 2, 3, 4))  # 翻转向量
 women <- women
-women[,rev(names(women))]  # 翻转列
+women[, rev(names(women))]  # 翻转列
 women[rev(rownames(women)),] # 翻转行
-transform(women,height=height*2.54)  # 修改数据框列的值
+transform(women, height = height * 2.54)  # 修改数据框列的值
 # start **********排序********** start
-sort(rivers,decreasing = T)  # 降序排列rivers
+sort(rivers, decreasing = T)  # 降序排列rivers
 sort(state.name)
 mtcars[sort(rownames(mtcars)),]  # 根据索引降序排列数据框
-mtcars[which(mtcars$mpg==as.vector(sort(mtcars$mpg))),]
+mtcars[which(mtcars$mpg == as.vector(sort(mtcars$mpg))),]
 ?order
 order(mtcars$mpg)  # 返回排序后的索引
 mtcars[order(mtcars$mpg),]    # 按照mpg列正序排序
 mtcars[order(-mtcars$mpg),]  # 按照mpg降序排列
-mtcars[order(mtcars$mpg,decreasing = T),]  # 按照mpg降序排列
+mtcars[order(mtcars$mpg, decreasing = T),]  # 按照mpg降序排列
 mtcars[rev(order(mtcars$mpg)),]   # 按照mpg降序排列
-mtcars[order(mtcars$mpg,mtcars$disp),]   # 按照mpg,disp降序排列
+mtcars[order(mtcars$mpg, mtcars$disp),]   # 按照mpg,disp降序排列
 # end **********排序********** end
 
 # start **********数据框的计算********** start
@@ -692,24 +694,24 @@ class(WorldPhones)
 wp <- data.frame(WorldPhones)
 rowSums(wp)  # 横向相加
 colMeans(wp)
-sdf <- cbind(wp,sum=rowSums(wp))
-msdf <- rbind(sdf,mean=colMeans(sdf))
+sdf <- cbind(wp, sum = rowSums(wp))
+msdf <- rbind(sdf, mean = colMeans(sdf))
 ?apply  # 对向量和数据框计算
-apply(sdf,MARGIN = 1,FUN = sum)  # 计算行求和
-apply(sdf,MARGIN = 2,FUN = mean)  # 求列平均值
+apply(sdf, MARGIN = 1, FUN = sum)  # 计算行求和
+apply(sdf, MARGIN = 2, FUN = mean)  # 求列平均值
 ?lapply # 对列表计算
 state.center  # a list
-lapply(state.center, FUN=length)  # 返回列表值
-sapply(state.center,FUN=length)  # 返回向量值
+lapply(state.center, FUN = length)  # 返回列表值
+sapply(state.center, FUN = length)  # 返回向量值
 ?tapply  # 对因子类型数据计算
 state.name
 state.division
-tapply(state.name,state.division,length)
+tapply(state.name, state.division, length)
 # end **********数据框的计算********** end
 
 # start **********数据中心化和标准化********** start
 ?scale
-heatmap(scale(state.x77,center = T,scale = T))
+heatmap(scale(state.x77, center = T, scale = T))
 colMeans(state.x77)
 # end **********数据中心化和标准化********** end
 
@@ -719,9 +721,204 @@ colMeans(state.x77)
 help(package = "reshape2")
 airquality
 names(airquality) <- tolower(names(airquality))
-head(airquality,20)
+head(airquality, 20)
 ?melt
-melt(airquality)  # # 融合数据
-
-
+melt(airquality, id.vars = c("Month", "Day"))  # # 融合数据  # 将Month和Day作为id变量
 # end -------------------- 数据格式转换 ------------------------ end
+
+# start -------------------- tidyr ------------------------ start
+library("tidyr")
+help(package = "tidyr")
+samples <- mtcars[1:10, 1:3]
+samples <- data.frame(name = row.names(samples), samples)
+gdata <- gather(samples, key = "Key", value = "Value", cyl, disp, mpg)  # 转换数据框
+gather(samples, key = "Key", value = "Value", 2:4)  # 融合转换数据框
+gather(samples, key = "Key", value = "Value", cyl, disp, -mpg)  # 融合转换数据框  不需要转换的列加一个减号-
+spread(gdata, key = "Key", value = "Value")  # 还原/扩展数据框
+
+# 拆分数据框某列
+a <- data.frame(ab = c("a.a", "a.b", "a.c"))
+sepa <- separate(a, col = "ab", into = c("A", "B"))
+unite(sepa, col = "ab", A, B, sep = ".")
+# end -------------------- tidyr ------------------------ end
+
+# start -------------------- dplyr ------------------------ start
+library("dplyr")
+ls("package:dplyr")
+help(package = "dplyr")
+iris <- iris[1:40,]
+dplyr::filter(iris, Sepal.Length > 7)   # 筛选Sepal.Length > 7的数据
+dplyr::distinct(rbind(iris[1:10,], iris[1:15,]))   # 去除重复行
+dplyr::slice(iris, 10:15)  # 切片任意行
+dplyr::sample_n(iris, 10)  # 随机取样10个
+dplyr::sample_frac(iris, 0.1)  # 随机取10%的样本
+
+?dplyr::arrange
+dplyr::arrange(iris, desc(Sepal.Length))  # 按照花萼长度进行降序排序
+dplyr::arrange(iris, Sepal.Length, desc(Sepal.Width))  # 按照花萼长度进行升序排序 并按照sepal.length降序
+
+help(select)
+example("select")
+iris %>% dplyr::select("Sepal.Length") # 选择Sepal.Length列
+iris %>% dplyr::select(Sepal.Length)  # 选择Sepal.Length列
+vars <- c("Sepal.Length", "Petal.Length")
+iris %>% dplyr::select(one_of(vars))  # 选择vars的两列
+dplyr::select(iris, starts_with("Sep"))  # 选择列名开头是Sep的列
+dplyr::select(iris, starts_with(c("Sep", "Pet")))  # 选择列名开头是Sep 和 Pet的列
+dplyr::select(iris, ends_with("Width"))  # 选择列名结尾是Width的列
+dplyr::select(iris, contains("pal"))  # 选择列名包含pal的列
+dplyr::select(iris, matches(""))    # 正则匹配列名
+billboard %>% select(num_range("wk", 1:10))  # 匹配列名前缀和数字
+iris %>% dplyr::select(-starts_with('Sep'))  # 选择列名前缀不为Sep的列
+
+?summarise()
+iris %>% summarise(sum(Sepal.Length))  # 计算Sepal.Length的和
+iris %>% dplyr::group_by(Species)
+iris %>%
+  group_by(Species) %>%
+  summarise(avg = mean(Sepal.Length))
+
+# start **********双表格操作********** start
+a <- iris %>%
+  dplyr::select("Species", "Sepal.Width") %>%
+  dplyr::slice(1:3) %>%
+  as.data.frame()
+b <- iris %>%
+  dplyr::select(ends_with(c("Species", "Sepal.Length"))) %>%
+  dplyr::slice(1:3) %>%
+  as.data.frame()
+a; b
+dplyr::left_join(a, b, by = "Species")
+a <- data.frame(x1 = c("A", "B", "C"), x2 = c(1, 2, 3))
+b <- data.frame(x1 = c("A", "B", "D"), x3 = c(4, 5, 6))
+dplyr::full_join(a, b, by = "x1")  # a ∪ b
+dplyr::inner_join(a, b, by = "x1") # a ∩ b
+dplyr::left_join(a, b, by = "x1")  # a
+dplyr::right_join(a, b, by = "x1") # b
+dplyr::semi_join(a, b, by = "x1") # b ∩ a
+dplyr::anti_join(a, b, by = "x1") # a - b
+
+a <- mtcars %>% slice(1:20)
+row.names(a) <- c(1:20)
+b <- mtcars %>% slice(11:30)
+row.names(b) <- c(1:20)
+a %>% dplyr::intersect(b)  # 取交集
+a %>% dplyr::union_all(b) # 合并后的集合
+a %>% dplyr::union(b)  # 取并集(非冗余)
+a %>% setdiff(b)  # a对b的补集
+# end **********双表格操作********** end
+# end -------------------- dplyr ------------------------ end
+
+# start -------------------- 数学统计函数 ------------------------ start
+# start **********概率论与数理统计方面********** start
+# 函数前缀
+# d 概率密度函数
+# p 分布函数
+# q 分布函数的反函数
+# r 产生相同分布的随机数
+rstudent(c(10,10))
+s <- round(rlogis(c(1000000)),1)
+plot(factor(s))
+pnorm(3)
+qqnorm(rnorm(100))
+# 生成随机数
+runif(10)  # 生成10个0-1之间的随机数
+runif(40,1,100)  # 生成40个1到100之间的随机数
+set.seed(666)  # 绑定随机的seed  同样的seed下随机数是不变的
+runif(20)
+# end **********概率论与数理统计方面********** end
+
+# end -------------------- 数学统计函数 ------------------------ end
+
+# start -------------------- 描述性统计函数 ------------------------ start
+var <- mtcars[c("mpg","hp","wt","am")]
+summary(var)   # 每列的最小值、四分之一位、中位数、平均值、十分之三位、最大值
+fivenum(var$hp)  # 向量最小值、四分之一位、中位数、四分之三位、最大值
+
+library(Hmisc)
+Hmisc::describe(var)   # 返回每列数目、缺失值数目、唯一值数目、各个分位数、五个最小值和五个最大值
+
+library(pastecs)
+stat.desc(var)  # 个数、空值数、NA数、最小值、最大值、值域、总和、中位数、均值、均值标准误差  、平均 置信度95%置信空间、方差、标准差、变异系数
+stat.desc(var,basic = T)  # 个数、空值数、NA数、最小值、最大值、值域、总和、中位数、均值、均值标准误差  、平均 置信度95%置信空间、方差、标准差、变异系数
+stat.desc(var,desc = T)  # 个数、空值数、NA数、最小值、最大值、值域、总和、中位数、均值、均值标准误差  、平均 置信度95%置信空间、方差、标准差、变异系数
+stat.desc(var,norm = T)  # 除了上面的值  还有偏度、峰度等
+
+library(doBy)
+?summaryBy
+summaryBy(mpg+hp+wt~am,data=var, FUN = mean)  # 根据am分组求平均值
+library(psych)
+?describeBy
+var %>% describeBy(list(am=var$am))  # 根据am分组计算一些统计值  无法使用自定义函数
+# end -------------------- 描述性统计函数 ------------------------ end
+
+# start -------------------- 频数统计函数 ------------------------ start
+mtcars
+mtcars$cyl <- mtcars$cyl %>% as.factor() # 将mtcars$cyl转换成因子
+mtcars$cyl
+split(mtcars,mtcars$cyl)  # 对mtcars根据cyl分组
+cut(mtcars$mpg,c(seq(10,50,10))) %>% table()   # 分成多个阶段计算频数
+prop.table(table(mtcars$cyl))   # 计算频率
+
+library(vcd)
+Arthritis
+table(Arthritis$Treatment,Arthritis$Improved)   # 根据Treatment和Improved两列做列联表
+Arthritis %>% with({table(Treatment,Improved)}) # 根据Treatment和Improved两列做列联表
+
+?xtabs
+xtabs(formula = ~ Treatment + Improved,data = Arthritis) # 根据Treatment和Improved两列做列联表
+?margin.table
+x <- xtabs(formula = ~ Treatment + Improved,data = Arthritis) # 根据Treatment和Improved两列做列联表
+margin.table(x,1)  # 查看边际值
+margin.table(x,2) # 查看边际值
+prop.table(x,2) # 查看边际比率
+xtabs(formula = ~ Treatment + Improved+Sex,data = Arthritis) # 根据Treatment和Improved和Sex三列做三维列联表
+xtabs(formula = ~ Treatment + Improved+Sex,data = Arthritis) %>% ftable() # 将三维列联表转换为平铺式的列联表
+# end -------------------- 频数统计函数 ------------------------ end
+
+# start -------------------- 独立性检验 ------------------------ start
+# 卡方检验
+library("vcd")
+mtable <- table(Arthritis$Treatment,Arthritis$Improved)
+chisq.test(mtable)   # 卡方检验
+sitable <- table(Arthritis$Sex, Arthritis$Improved)
+chisq.test(sitable)
+# Fisher检验
+fisher.test(mtable)
+# Cochran-Mantel-Haenszel检验
+tistable <- xtabs(~Treatment+Improved+Sex,data = Arthritis)
+mantelhaen.test(tistable)
+# p-value
+
+# end -------------------- 独立性检验 ------------------------ end
+
+# start -------------------- 相关性分析 ------------------------ start
+# pearson相关系数
+# Spearman相关系数
+# Kendall相关系数
+# 偏相关系数
+# 多分格（polychoric）相关系数
+# 多系列相关系数
+?cor
+state.x77
+cor(state.x77)  # 计算相关系数
+cov(state.x77)  # 计算协方差
+x <- state.x77[,c(1,2,3,6)]
+y <- state.x77[,c(4,5)]
+cor(x,y) # 计算x与y列与列的相关系数
+library("ggm")
+?pcor
+colnames(state.x77)
+pcor(c(1,5,2,3,6),cov(state.x77))  # 计算2,3,6为条件变量时的第1和第5列的偏相关系数
+# end -------------------- 相关性分析 ------------------------ end
+
+# start -------------------- 相关性检验 ------------------------ start
+cor.test(state.x77[,3],state.x77[,5])  # 相关系数检验  给出p-value和95%置信区间（95% confidence interval）
+library("psych")
+corr.test(state.x77)  # 给出相关系数矩阵和p-value矩阵
+library(ggm)
+?pcor
+x <- pcor(c(1,5,2,3,6),cov(state.x77))
+pcor.test(x,3,50)  # 偏相关系数的检验  x是偏相关系数对象，3是xiang
+
+# end -------------------- 相关性检验 ------------------------ end
